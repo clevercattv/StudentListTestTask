@@ -2,49 +2,49 @@ package com.clevercattv.student.list.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Table
 @Data
+@EqualsAndHashCode(of = {"firstName", "lastName"})
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 413385207841147485L;
-    private static final String NAME_PATTERN = "^[a-zA-Z ,.'-]$";
+    public static final String NAME_PATTERN = "^[a-zA-Z ,.'-]*$";
 
     @Id
     Long id;
 
     @Size(min = 2, max = 26, message = "Incorrect first name size!")
-    @Pattern(regexp = NAME_PATTERN, message = "Incorrect ")
+    @Pattern(regexp = NAME_PATTERN, message = "Incorrect symbols, allowed [a-zA-Z ,.'-]")
     String firstName;
 
-    @Size(min = 2, max = 26, message = "Incorrect middle name size!")
-    @Pattern(regexp = NAME_PATTERN, message = "")
-    String middleName;
-
     @Size(min = 2, max = 26, message = "Incorrect last name size!")
-    @Pattern(regexp = NAME_PATTERN, message = "")
+    @Pattern(regexp = NAME_PATTERN, message = "Incorrect symbols, allowed [a-zA-Z ,.'-]")
     String lastName;
 
-    @Size(min = 2, max = 26, message = "Incorrect last name size!")
+    @Size(min = 2, max = 127, message = "Incorrect last name size!")
     String university;
     String specialty;
-    String semester;
+    Integer semester;
+
+    Integer age;
 
     LocalDate entryDate;
-    LocalDate birthDate;
+    LocalDateTime creationTime;
 
 }

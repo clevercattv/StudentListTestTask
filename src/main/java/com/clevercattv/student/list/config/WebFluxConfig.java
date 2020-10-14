@@ -10,7 +10,8 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 @Configuration
-@ComponentScan({"com.clevercattv.student.list.controller", "com.clevercattv.student.list.service"})
+@ComponentScan({"com.clevercattv.student.list.controller",
+        "com.clevercattv.student.list.service", "com.clevercattv.student.list.exception"})
 @EnableWebFlux
 public class WebFluxConfig implements WebFluxConfigurer {
 

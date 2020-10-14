@@ -1,12 +1,11 @@
 CREATE TABLE IF NOT EXISTS `STUDENT` (
 `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-`firstName` VARCHAR(26) NOT NULL,
-`middleName` VARCHAR(26) NOT NULL,
-`lastName` VARCHAR(26) NOT NULL,
+`first_name` VARCHAR(26) NOT NULL,
+`last_name` VARCHAR(26) NOT NULL,
 `university` VARCHAR(127) NOT NULL,
 `specialty` VARCHAR(127) NOT NULL,
 `semester` INTEGER(10) NOT NULL,
-`entryDate` TIMESTAMP NOT NULL,
-`birthDate` TIMESTAMP NOT NULL,
-CONSTRAINT fullName UNIQUE (firstName,middleName,lastName)
+`entry_date` TIMESTAMP NOT NULL,
+`age` INTEGER NOT NULL,
+`creation_time` TIMESTAMP NOT NULL
 );

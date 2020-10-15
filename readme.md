@@ -1,1 +1,0 @@
-# Test task : Student list

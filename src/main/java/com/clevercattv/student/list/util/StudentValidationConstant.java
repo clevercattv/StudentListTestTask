@@ -20,5 +20,5 @@ public interface StudentValidationConstant {
     int MIN_SEMESTER = 1;
 
     int MAX_AGE = 200;
-    int MIN_AGE = 1;
+    int MIN_AGE = 16;
 }

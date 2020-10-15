@@ -24,18 +24,31 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+import static com.clevercattv.student.list.util.StudentValidationConstant.MAX_AGE;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MAX_FIRST_NAME_LENGTH;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MAX_SEMESTER;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MAX_UNIVERSITY_LENGTH;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_AGE;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_FIRST_NAME_LENGTH;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_SEMESTER;
+import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_UNIVERSITY_LENGTH;
+import static com.clevercattv.student.list.util.StudentValidationConstant.TEXT_PATTERN;
+
 @ExtendWith({SpringExtension.class})
 @ContextConfiguration(classes = {R2dbcConfig.class, WebFluxConfig.class})
 class StudentControllerValidationTest {
 
     private static final String NOT_NULL_MESSAGE = "Incorrect value! A null is forbidden";
-    private static final String MIN_SEMESTER_MESSAGE = "Incorrect value! Minimum allowed value 1";
-    private static final String MAX_SEMESTER_MESSAGE = "Incorrect value! Maximum allowed value 20";
-    private static final String MIN_AGE_MESSAGE = "Incorrect value! Minimum allowed value 1";
-    private static final String MAX_AGE_MESSAGE = "Incorrect value! Maximum allowed value 200";
-    private static final String SIZE_NAME_MESSAGE = "Incorrect length! Allowed length from 2 to 26";
-    private static final String SIZE_UNIVERSITY_MESSAGE = "Incorrect length! Allowed length from 2 to 63";
-    private static final String PATTERN_MESSAGE = "Incorrect symbols! Allowed symbols a-zA-Z ,.'-";
+    private static final String MAX_SEMESTER_MESSAGE = "Incorrect value! Maximum allowed value " + MAX_SEMESTER;
+    private static final String MIN_SEMESTER_MESSAGE = "Incorrect value! Minimum allowed value " + MIN_SEMESTER;
+    private static final String MAX_AGE_MESSAGE = "Incorrect value! Maximum allowed value " + MAX_AGE;
+    private static final String MIN_AGE_MESSAGE = "Incorrect value! Minimum allowed value " + MIN_AGE;
+    private static final String SIZE_NAME_MESSAGE = String.format("Incorrect length! Allowed length from %d to %d",
+            MIN_FIRST_NAME_LENGTH, MAX_FIRST_NAME_LENGTH);
+    private static final String SIZE_UNIVERSITY_MESSAGE = String.format("Incorrect length! Allowed length from %d to %d",
+            MIN_UNIVERSITY_LENGTH, MAX_UNIVERSITY_LENGTH);
+    private static final String PATTERN_MESSAGE = String.format("Incorrect symbols! Allowed symbols %s",
+            TEXT_PATTERN.substring(TEXT_PATTERN.indexOf('[') + 1, TEXT_PATTERN.indexOf(']')));
 
     private static final String JSON_PATH_FIRST_NAME = "$.firstName";
     private static final String JSON_PATH_LAST_NAME = "$.lastName";

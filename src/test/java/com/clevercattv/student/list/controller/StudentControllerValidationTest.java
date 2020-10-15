@@ -120,9 +120,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidFirstNameRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setFirstName(null)), // change valid param to invalid
+                        buildRequest(request -> request.setFirstName(null)),
                         JSON_PATH_FIRST_NAME,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Empty value
                         buildRequest(request -> request.setFirstName("")),
@@ -160,9 +160,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidLastNameRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setLastName(null)), // change valid param to invalid
+                        buildRequest(request -> request.setLastName(null)),
                         JSON_PATH_LAST_NAME,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Empty value
                         buildRequest(request -> request.setLastName("")),
@@ -200,9 +200,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidUniversityRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setUniversity(null)), // change valid param to invalid
+                        buildRequest(request -> request.setUniversity(null)),
                         JSON_PATH_UNIVERSITY,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Empty value
                         buildRequest(request -> request.setUniversity("")),
@@ -240,9 +240,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidSpecialtyRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setSpecialty(null)), // change valid param to invalid
+                        buildRequest(request -> request.setSpecialty(null)),
                         JSON_PATH_SPECIALTY,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Empty value
                         buildRequest(request -> request.setSpecialty("")),
@@ -280,9 +280,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidSemesterRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setSemester(null)), // change valid param to invalid
+                        buildRequest(request -> request.setSemester(null)),
                         JSON_PATH_SEMESTER,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Min size
                         buildRequest(request -> request.setSemester(0)),
@@ -300,9 +300,9 @@ class StudentControllerValidationTest {
     private static Stream<Arguments> invalidAgeRequestArguments() {
         return Stream.of(
                 Arguments.of( // null
-                        buildRequest(request -> request.setAge(null)), // change valid param to invalid
+                        buildRequest(request -> request.setAge(null)),
                         JSON_PATH_AGE,
-                        new String[]{NOT_NULL_MESSAGE} // validation messages
+                        new String[]{NOT_NULL_MESSAGE}
                 ),
                 Arguments.of( // Min size
                         buildRequest(request -> request.setAge(0)),

@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS `STUDENT`
 INSERT INTO `STUDENT`(`first_name`, `last_name`, `university`, `specialty`, `semester`, `age`, `creation_time`)
 VALUES ('Anny', 'Hallbord', 'Francis Marion University', 'Indian Statistical Institute', 11, 38, now()),
        ('Jackie', 'Hallbord', 'Francis Marion University', 'Indian Statistical Institute', 7, 33, now()),
-('Ogden', 'Abbati', 'Francis Marion University', 'Indian Statistical Institute', 3, 22, now())
+       ('Ogden', 'Abbati', 'Francis Marion University', 'Indian Statistical Institute', 3, 22, now());

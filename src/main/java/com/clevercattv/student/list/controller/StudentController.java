@@ -34,19 +34,19 @@ public class StudentController {
 
     @GetMapping
     public Flux<Student> readAll() {
-        log.info("call GET [/student]");
+        log.info("GET [/student] - read all Students");
         return service.readAll();
     }
 
     @PostMapping(consumes = "application/json")
     public Mono<Student> createStudent(@Valid @RequestBody CreateStudentRequest createRequest) {
-        log.info("call POST [/student]");
+        log.info("POST [/student] - create {}", createRequest);
         return service.create(createRequest);
     }
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity<Object> handleDatabaseException(DataIntegrityViolationException exception) {
-        log.error("Database exception", exception);
+        log.error("DataIntegrityViolationException", exception);
         if (exception.getCause() instanceof R2dbcDataIntegrityViolationException) {
             R2dbcDataIntegrityViolationException cause =
                     (R2dbcDataIntegrityViolationException) exception.getCause();

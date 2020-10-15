@@ -23,6 +23,9 @@
         <mockito.version>3.5.13</mockito.version>
         <json.path.version>2.4.0</json.path.version>
         <hamcrest.version>1.3</hamcrest.version>
+        <javax.el-api.version>3.0.1-b06</javax.el-api.version>
+        <javax.el.version>2.2.4</javax.el.version>
+        <slf4j.version>1.7.30</slf4j.version>
     </properties>
 
     <dependencies>
@@ -51,12 +54,12 @@
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
-            <version>3.0.1-b06</version>
+            <version>${javax.el-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>javax.el</artifactId>
-            <version>2.2.4</version>
+            <version>${javax.el.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -95,6 +98,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>

@@ -86,6 +86,20 @@ class StudentControllerTest {
                 .jsonPath("$.error").isNotEmpty();
     }
 
+    @Test
+    void createStudent_DuplicateStudent_ReturnErrorMessage() {
+        client.post()
+                .uri("/student")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(EXPECTED_STUDENT_1), CreateStudentRequest.class)
+                .exchange()
+                .expectStatus()
+                .is4xxClientError()
+                .expectBody()
+                .jsonPath("$.error").value(Matchers.is("Such a student already exists in the database"));
+    }
+
     @ParameterizedTest
     @MethodSource("validRequestsMethodSource")
     void createStudent_ValidRequest_ReturnStudent(CreateStudentRequest request) {

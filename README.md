@@ -7,5 +7,4 @@
 * Validation
     * Used hibernate validator 
     * Implemented custom messages
-* Logs
 * Tests

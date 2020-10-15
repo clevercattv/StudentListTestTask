@@ -61,8 +61,8 @@ class StudentControllerTest {
         client = WebTestClient.bindToApplicationContext(context).build();
     }
 
-    @Test // students create schema.sql inside test resources
-    void getStudent() {
+    @Test // schema.sql creates these students
+    void getStudent_ValidCall_ReturnStudents() {
         client.get()
                 .uri("/student")
                 .accept(MediaType.APPLICATION_JSON)
@@ -71,6 +71,19 @@ class StudentControllerTest {
                 .isOk()
                 .expectBodyList(Student.class)
                 .contains(EXPECTED_STUDENT_1, EXPECTED_STUDENT_2, EXPECTED_STUDENT_3);
+    }
+
+    @Test
+    void createStudent_EmptyBody_ReturnErrorMessage() {
+        client.post()
+                .uri("/student")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .is4xxClientError()
+                .expectBody()
+                .jsonPath("$.error").isNotEmpty();
     }
 
     @ParameterizedTest

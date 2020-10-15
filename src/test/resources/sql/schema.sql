@@ -10,3 +10,7 @@ CREATE TABLE IF NOT EXISTS `STUDENT`
     `creation_time` TIMESTAMP   NOT NULL,
     CONSTRAINT uniqueConstraint UNIQUE (`first_name`, `last_name`, `university`, `specialty`, `semester`, `age`)
 );
+
+
+INSERT INTO `STUDENT`(`first_name`, `last_name`, `university`, `specialty`, `semester`, `age`, `creation_time`)
+VALUES ('Anny', 'Hallbord', 'Francis Marion University', 'Indian Statistical Institute', 11, 38, now())

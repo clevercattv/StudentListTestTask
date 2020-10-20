@@ -10,7 +10,7 @@
 * Logs
 * Tests
 
-Launch application (intellij idea)
+### Launch application (intellij idea with tomcat)
 
 [Instruction with images](https://mkyong.com/intellij/intellij-idea-run-debug-web-application-on-tomcat/)
 

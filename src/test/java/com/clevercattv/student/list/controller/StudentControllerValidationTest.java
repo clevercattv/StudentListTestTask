@@ -50,12 +50,12 @@ class StudentControllerValidationTest {
     private static final String PATTERN_MESSAGE = String.format("Incorrect symbols! Allowed symbols %s",
             TEXT_PATTERN.substring(TEXT_PATTERN.indexOf('[') + 1, TEXT_PATTERN.indexOf(']')));
 
-    private static final String JSON_PATH_FIRST_NAME = "$.firstName";
-    private static final String JSON_PATH_LAST_NAME = "$.lastName";
-    private static final String JSON_PATH_UNIVERSITY = "$.university";
-    private static final String JSON_PATH_SPECIALTY = "$.specialty";
-    private static final String JSON_PATH_SEMESTER = "$.semester";
-    private static final String JSON_PATH_AGE = "$.age";
+    private static final String JSON_PATH_FIRST_NAME = "$.errors.firstName";
+    private static final String JSON_PATH_LAST_NAME = "$.errors.lastName";
+    private static final String JSON_PATH_UNIVERSITY = "$.errors.university";
+    private static final String JSON_PATH_SPECIALTY = "$.errors.specialty";
+    private static final String JSON_PATH_SEMESTER = "$.errors.semester";
+    private static final String JSON_PATH_AGE = "$.errors.age";
 
     private static final CreateStudentRequest.CreateStudentRequestBuilder VALID_REQUEST_BUILDER = CreateStudentRequest.builder()
             .firstName("Anabal")
@@ -113,7 +113,7 @@ class StudentControllerValidationTest {
                 .expectStatus()
                 .is4xxClientError()
                 .expectBody()
-                .jsonPath("$.*").value(Matchers.hasSize(1))
+                .jsonPath("$.errors.*").value(Matchers.hasSize(1))
                 .jsonPath(path).value(Matchers.containsInAnyOrder(messages));
     }
 

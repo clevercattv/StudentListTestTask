@@ -1,7 +1,6 @@
 package com.clevercattv.student.list.controller;
 
-import com.clevercattv.student.list.config.R2dbcConfig;
-import com.clevercattv.student.list.config.WebFluxConfig;
+import com.clevercattv.student.list.ApplicationStart;
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -12,9 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
@@ -35,7 +34,7 @@ import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_UN
 import static com.clevercattv.student.list.util.StudentValidationConstant.TEXT_PATTERN;
 
 @ExtendWith({SpringExtension.class})
-@ContextConfiguration(classes = {R2dbcConfig.class, WebFluxConfig.class})
+@SpringBootTest(classes = ApplicationStart.class)
 class StudentControllerValidationTest {
 
     private static final String NOT_NULL_MESSAGE = "Incorrect value! A null is forbidden";

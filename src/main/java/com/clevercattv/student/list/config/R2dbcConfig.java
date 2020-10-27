@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @Configuration
 @PropertySource("classpath:database.properties")
-@EnableR2dbcRepositories("com.clevercattv.student.list.repository")
+@EnableR2dbcRepositories
 @RequiredArgsConstructor
 public class R2dbcConfig extends AbstractR2dbcConfiguration {
 

@@ -1,7 +1,6 @@
 package com.clevercattv.student.list.controller;
 
-import com.clevercattv.student.list.config.R2dbcConfig;
-import com.clevercattv.student.list.config.WebFluxConfig;
+import com.clevercattv.student.list.ApplicationStart;
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import com.clevercattv.student.list.entity.Student;
 import org.hamcrest.Matchers;
@@ -11,9 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
@@ -26,7 +25,7 @@ import static com.clevercattv.student.list.util.Constants.EXPECTED_STUDENT_2;
 import static com.clevercattv.student.list.util.Constants.EXPECTED_STUDENT_3;
 
 @ExtendWith({SpringExtension.class})
-@ContextConfiguration(classes = {R2dbcConfig.class, WebFluxConfig.class})
+@SpringBootTest(classes = ApplicationStart.class)
 class StudentControllerTest {
 
     private static final Long NOT_EXISTING_ID = 99999L;

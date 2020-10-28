@@ -60,6 +60,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleValidationException(NoSuchStudentException exception) {
         log.error("ServerWebInputException", exception);
 
+        // Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content https://tools.ietf.org/html/rfc7231#section-6.3.5
+        // ResponseEntity.noContent() have no body method
+        // ResponseEntity.status(HttpStatus.NO_CONTENT).body(...) doesn't return body (test on postman)
         return ResponseEntity.noContent().build(); // Body removes if HttpStatus.NO_CONTENT
     }
 

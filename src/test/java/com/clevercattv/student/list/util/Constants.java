@@ -1,10 +1,10 @@
 package com.clevercattv.student.list.util;
 
-import com.clevercattv.student.list.entity.Student;
+import com.clevercattv.student.list.dto.StudentResponse;
 
 public interface Constants {
 
-     Student EXPECTED_STUDENT_1 = Student.builder()
+     StudentResponse EXPECTED_STUDENT_1 = StudentResponse.builder()
             .id(1L)
             .firstName("Anny")
             .lastName("Hallbord")
@@ -14,7 +14,7 @@ public interface Constants {
             .age(38)
             .build();
 
-     Student EXPECTED_STUDENT_2 = Student.builder()
+     StudentResponse EXPECTED_STUDENT_2 = StudentResponse.builder()
              .id(2L)
             .firstName("Jackie")
             .lastName("Hallbord")
@@ -24,7 +24,7 @@ public interface Constants {
             .age(33)
             .build();
 
-     Student EXPECTED_STUDENT_3 = Student.builder()
+     StudentResponse EXPECTED_STUDENT_3 = StudentResponse.builder()
              .id(3L)
             .firstName("Ogden")
             .lastName("Abbati")
@@ -34,7 +34,7 @@ public interface Constants {
             .age(22)
             .build();
 
-     Student DELETEABLE_STUDENT = Student.builder()
+     StudentResponse DELETEABLE_STUDENT = StudentResponse.builder()
              .id(4L)
             .firstName("Abbati")
             .lastName("Ogden")

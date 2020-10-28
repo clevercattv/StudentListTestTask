@@ -1,7 +1,7 @@
 package com.clevercattv.student.list.controller;
 
 import com.clevercattv.student.list.dto.CreateStudentRequest;
-import com.clevercattv.student.list.entity.Student;
+import com.clevercattv.student.list.dto.StudentResponse;
 import com.clevercattv.student.list.service.StudentService;
 import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
@@ -36,20 +36,20 @@ public class StudentController {
     private final StudentService service;
 
     @GetMapping("/{id}")
-    public Mono<Student> readOne(@PathVariable("id") Long id) {
+    public Mono<StudentResponse> readOne(@PathVariable("id") Long id) {
         log.info("GET [/student/{}] - read Student", id);
         return service.readOne(id);
     }
 
     @GetMapping
-    public Flux<Student> readAll() {
+    public Flux<StudentResponse> readAll() {
         log.info("GET [/student] - read all Students");
         return service.readAll();
     }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Mono<Student> createStudent(@Valid @RequestBody CreateStudentRequest createRequest) {
+    public Mono<StudentResponse> createStudent(@Valid @RequestBody CreateStudentRequest createRequest) {
         log.info("POST [/student] - create {}", createRequest);
         return service.create(createRequest);
     }

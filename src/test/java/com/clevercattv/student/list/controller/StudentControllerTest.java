@@ -2,7 +2,7 @@ package com.clevercattv.student.list.controller;
 
 import com.clevercattv.student.list.ApplicationStart;
 import com.clevercattv.student.list.dto.CreateStudentRequest;
-import com.clevercattv.student.list.entity.Student;
+import com.clevercattv.student.list.dto.StudentResponse;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,7 +55,7 @@ class StudentControllerTest {
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBodyList(Student.class)
+                .expectBodyList(StudentResponse.class)
                 .contains(EXPECTED_STUDENT_1, EXPECTED_STUDENT_2, EXPECTED_STUDENT_3);
     }
 
@@ -187,8 +187,7 @@ class StudentControllerTest {
                 .jsonPath("$.university").value(Matchers.is(request.getUniversity()))
                 .jsonPath("$.specialty").value(Matchers.is(request.getSpecialty()))
                 .jsonPath("$.semester").value(Matchers.is(request.getSemester()))
-                .jsonPath("$.age").value(Matchers.is(request.getAge()))
-                .jsonPath("$.creationTime").isNotEmpty();
+                .jsonPath("$.age").value(Matchers.is(request.getAge()));
     }
 
     private static Stream<CreateStudentRequest> validRequestsMethodSource() {

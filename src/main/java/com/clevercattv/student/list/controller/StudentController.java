@@ -2,6 +2,7 @@ package com.clevercattv.student.list.controller;
 
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import com.clevercattv.student.list.dto.StudentResponse;
+import com.clevercattv.student.list.entity.Student;
 import com.clevercattv.student.list.service.StudentService;
 import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -45,6 +47,24 @@ public class StudentController {
     public Flux<StudentResponse> readAll() {
         log.info("GET [/student] - read all Students");
         return service.readAll();
+    }
+
+    @GetMapping("/hibernate")
+    public List<StudentResponse> readAllHibernate() {
+        log.info("GET [/student] - read all Students");
+        return service.readAllHibernate();
+    }
+
+    @GetMapping("/hibernate/lazy")
+    public List<Student> readAllStudentHibernate() {
+        log.info("GET [/student] - read all Students");
+        return service.readAllStudentHibernate();
+    }
+
+    @PostMapping("/hibernate")
+    public StudentResponse createStudentHibernate(@Valid @RequestBody CreateStudentRequest createRequest) {
+        log.info("POST [/student] - create {}", createRequest);
+        return service.createStudentHibernate(createRequest);
     }
 
     @PostMapping(consumes = "application/json")

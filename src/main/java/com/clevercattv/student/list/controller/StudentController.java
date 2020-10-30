@@ -3,6 +3,7 @@ package com.clevercattv.student.list.controller;
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import com.clevercattv.student.list.dto.StudentResponse;
 import com.clevercattv.student.list.entity.Student;
+import com.clevercattv.student.list.service.StudentJpaService;
 import com.clevercattv.student.list.service.StudentService;
 import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,7 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService service;
+    private final StudentJpaService jpaService;
 
     @GetMapping("/{id}")
     public Mono<StudentResponse> readOne(@PathVariable("id") Long id) {
@@ -51,20 +53,20 @@ public class StudentController {
 
     @GetMapping("/hibernate")
     public List<StudentResponse> readAllHibernate() {
-        log.info("GET [/student] - read all Students");
-        return service.readAllHibernate();
+        log.info("GET [/student/hibernate] - read all Students");
+        return jpaService.readAll();
     }
 
     @GetMapping("/hibernate/lazy")
     public List<Student> readAllStudentHibernate() {
-        log.info("GET [/student] - read all Students");
-        return service.readAllStudentHibernate();
+        log.info("GET [/student/hibernate/lazy] - read all Students");
+        return jpaService.readAllStudent();
     }
 
     @PostMapping("/hibernate")
     public StudentResponse createStudentHibernate(@Valid @RequestBody CreateStudentRequest createRequest) {
-        log.info("POST [/student] - create {}", createRequest);
-        return service.createStudentHibernate(createRequest);
+        log.info("POST [/student/hibernate] - create {}", createRequest);
+        return jpaService.create(createRequest);
     }
 
     @PostMapping(consumes = "application/json")

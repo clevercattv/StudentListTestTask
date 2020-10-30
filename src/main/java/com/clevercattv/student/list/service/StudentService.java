@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(transactionManager = "connectionFactoryTransactionManager")
 public class StudentService {
 
     private final StudentRepository repository;
@@ -25,12 +25,12 @@ public class StudentService {
         return repository.save(student).map(mapper::toResponse);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, transactionManager = "connectionFactoryTransactionManager")
     public Mono<StudentResponse> readOne(Long id) {
         return readStudent(id).map(mapper::toResponse);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, transactionManager = "connectionFactoryTransactionManager")
     public Flux<StudentResponse> readAll() {
         return repository.findAll()
                 .map(mapper::toResponse);

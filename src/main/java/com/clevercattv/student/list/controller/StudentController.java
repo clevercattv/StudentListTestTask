@@ -2,6 +2,8 @@ package com.clevercattv.student.list.controller;
 
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import com.clevercattv.student.list.dto.StudentResponse;
+import com.clevercattv.student.list.entity.Student;
+import com.clevercattv.student.list.service.StudentJpaService;
 import com.clevercattv.student.list.service.StudentService;
 import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -34,6 +37,7 @@ import java.util.Collections;
 public class StudentController {
 
     private final StudentService service;
+    private final StudentJpaService jpaService;
 
     @GetMapping("/{id}")
     public Mono<StudentResponse> readOne(@PathVariable("id") Long id) {
@@ -52,6 +56,25 @@ public class StudentController {
     public Mono<StudentResponse> createStudent(@Valid @RequestBody CreateStudentRequest createRequest) {
         log.info("POST [/student] - create {}", createRequest);
         return service.create(createRequest);
+    }
+
+    @GetMapping("/jpa")
+    public List<StudentResponse> readAllJpa() {
+        log.info("GET [/student/jpa] - read all Students");
+        return jpaService.readAll();
+    }
+
+    @GetMapping("/jpa/lazy")
+    public List<Student> readAllJpaLazy() {
+        log.info("GET [/student/jpa/lazy] - read all Students");
+        return jpaService.readAllLazy();
+    }
+
+    @PostMapping(value = "/jpa",consumes = "application/json")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public StudentResponse createStudentJpa(@Valid @RequestBody CreateStudentRequest createRequest) {
+        log.info("POST [/student/jpa] - create {}", createRequest);
+        return jpaService.create(createRequest);
     }
 
     @DeleteMapping("/{id}")

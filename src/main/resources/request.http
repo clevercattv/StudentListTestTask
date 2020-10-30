@@ -1,0 +1,23 @@
+POST http://localhost:8080/student/jpa
+Content-Type: application/json
+
+{
+  "firstName": "Universist",
+  "lastName": "Gilhoolsdie",
+  "university": "University of the Philippines Mindanao",
+  "specialty": "Cyber security",
+  "semester": 20,
+  "age": 16
+}
+
+###
+
+GET http://localhost:8080/student/jpa
+Accept: application/json
+
+###
+
+GET http://localhost:8080/student/jpa/lazy
+Accept: application/json
+
+###

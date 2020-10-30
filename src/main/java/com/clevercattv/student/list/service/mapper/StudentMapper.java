@@ -1,6 +1,7 @@
 package com.clevercattv.student.list.service.mapper;
 
 import com.clevercattv.student.list.dto.CreateStudentRequest;
+import com.clevercattv.student.list.dto.StudentResponse;
 import com.clevercattv.student.list.entity.Student;
 import org.mapstruct.Mapper;
 
@@ -8,5 +9,6 @@ import org.mapstruct.Mapper;
 public interface StudentMapper {
 
     Student toEntity(CreateStudentRequest request);
+    StudentResponse toResponse(Student student);
 
 }

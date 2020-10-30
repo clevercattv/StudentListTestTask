@@ -1,7 +1,6 @@
 package com.clevercattv.student.list.controller;
 
-import com.clevercattv.student.list.config.R2dbcConfig;
-import com.clevercattv.student.list.config.WebFluxConfig;
+import com.clevercattv.student.list.ApplicationStart;
 import com.clevercattv.student.list.dto.CreateStudentRequest;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -12,9 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
@@ -35,7 +34,7 @@ import static com.clevercattv.student.list.util.StudentValidationConstant.MIN_UN
 import static com.clevercattv.student.list.util.StudentValidationConstant.TEXT_PATTERN;
 
 @ExtendWith({SpringExtension.class})
-@ContextConfiguration(classes = {R2dbcConfig.class, WebFluxConfig.class})
+@SpringBootTest(classes = ApplicationStart.class)
 class StudentControllerValidationTest {
 
     private static final String NOT_NULL_MESSAGE = "Incorrect value! A null is forbidden";
@@ -50,12 +49,12 @@ class StudentControllerValidationTest {
     private static final String PATTERN_MESSAGE = String.format("Incorrect symbols! Allowed symbols %s",
             TEXT_PATTERN.substring(TEXT_PATTERN.indexOf('[') + 1, TEXT_PATTERN.indexOf(']')));
 
-    private static final String JSON_PATH_FIRST_NAME = "$.firstName";
-    private static final String JSON_PATH_LAST_NAME = "$.lastName";
-    private static final String JSON_PATH_UNIVERSITY = "$.university";
-    private static final String JSON_PATH_SPECIALTY = "$.specialty";
-    private static final String JSON_PATH_SEMESTER = "$.semester";
-    private static final String JSON_PATH_AGE = "$.age";
+    private static final String JSON_PATH_FIRST_NAME = "$.errors.firstName";
+    private static final String JSON_PATH_LAST_NAME = "$.errors.lastName";
+    private static final String JSON_PATH_UNIVERSITY = "$.errors.university";
+    private static final String JSON_PATH_SPECIALTY = "$.errors.specialty";
+    private static final String JSON_PATH_SEMESTER = "$.errors.semester";
+    private static final String JSON_PATH_AGE = "$.errors.age";
 
     private static final CreateStudentRequest.CreateStudentRequestBuilder VALID_REQUEST_BUILDER = CreateStudentRequest.builder()
             .firstName("Anabal")
@@ -113,7 +112,7 @@ class StudentControllerValidationTest {
                 .expectStatus()
                 .is4xxClientError()
                 .expectBody()
-                .jsonPath("$.*").value(Matchers.hasSize(1))
+                .jsonPath("$.errors.*").value(Matchers.hasSize(1))
                 .jsonPath(path).value(Matchers.containsInAnyOrder(messages));
     }
 

@@ -10,13 +10,8 @@
 * Logs
 * Tests
 
-### Launch application (intellij idea with tomcat)
+### Launch application (intellij idea)
 
-[Instruction with images](https://mkyong.com/intellij/intellij-idea-run-debug-web-application-on-tomcat/)
-
-Short instruction : 
-* Install a plugin "Tomcat and TomEE Integration" if you didn't have tomcat on PC
-* Edit Configurations -> Add New Configuration -> Tomcat Local
-* Select tomcat server -> Deployment -> Fix (or add) -> ...:war exploded
-* Save settings and run
+* Open ApplicationStart.class
+* CTRL + SHIFT + F10
 
